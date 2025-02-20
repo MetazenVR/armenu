@@ -6,7 +6,7 @@
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/aframe/build/aframe-ar.min.js"></script>
   </head>
 
-  <body style="margin: 0; overflow: hidden;">
+  <body style="margin: 0; overflow: hidden">
     <a-scene embedded arjs>
       <!-- Camera -->
       <a-camera-static position="0 0 0"></a-camera-static>
@@ -14,11 +14,12 @@
       <!-- Marker con ID 'hiro' (default marker di AR.js) -->
       <a-marker preset="hiro">
         <!-- Modello 3D della Pizza Ballerina -->
-        <a-entity 
-          gltf-model="https://metazenvr.github.io/armenu/pizza_ballerina.glb" 
-          scale="0.5 0.5 0.5" 
-          position="0 0 0"
-          rotation="0 180 0">
+        <a-entity
+          gltf-model="https://metazenvr.github.io/armenu/model/pizza_ballerina.glb"
+          scale="10 10 10"
+          position="1 1 2"
+          rotation="0 180 0"
+        >
         </a-entity>
       </a-marker>
 
@@ -26,7 +27,19 @@
       <a-light type="ambient" color="#FFF"></a-light>
     </a-scene>
 
-    <h1 style="position: absolute; top: 10px; left: 10px; color: white; font-family: Arial;">Menù in Realtà Aumentata</h1>
-    <p style="position: absolute; top: 50px; left: 10px; color: white;">Inquadra il marker per vedere la Pizza Ballerina!</p>
+    <h1
+      style="
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: white;
+        font-family: Arial;
+      "
+    >
+      Menù in Realtà Aumentata
+    </h1>
+    <p style="position: absolute; top: 50px; left: 10px; color: white">
+      Inquadra il marker per vedere la Pizza Ballerina!
+    </p>
   </body>
 </html>
