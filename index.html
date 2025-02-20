@@ -13,8 +13,9 @@
 
       <!-- Marker con ID 'hiro' (default marker di AR.js) -->
       <a-marker preset="hiro">
-        <!-- Modello 3D della Pizza Ballerina -->
+        <!-- Modello 3D della Pizza Ballerina con rotazione touch migliorata -->
         <a-entity
+          id="pizza-ballerina"
           gltf-model="https://metazenvr.github.io/armenu/model/pizza_ballerina.glb"
           scale="10 10 10"
           position="1 1 2"
@@ -36,10 +37,49 @@
         font-family: Arial;
       "
     >
-      Menù in Realtà Aumentata
+      Menu' in Realta' Aumentata
     </h1>
     <p style="position: absolute; top: 50px; left: 10px; color: white">
-      Inquadra il marker per vedere la Pizza Ballerina!
+      Ruota il modello 3D trascinandolo con il dito o il mouse!
     </p>
+
+    <script>
+      const model = document.getElementById("pizza-ballerina");
+      let isDragging = false;
+      let previousX = 0;
+      let previousY = 0;
+
+      function startDrag(e) {
+        isDragging = true;
+        previousX = e.touches ? e.touches[0].clientX : e.clientX;
+        previousY = e.touches ? e.touches[0].clientY : e.clientY;
+      }
+
+      function stopDrag() {
+        isDragging = false;
+      }
+
+      function rotateModel(e) {
+        if (!isDragging) return;
+        const rotation = model.getAttribute("rotation");
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        rotation.y += (clientX - previousX) * 0.5;
+        rotation.x -= (clientY - previousY) * 0.5;
+
+        model.setAttribute("rotation", rotation);
+        previousX = clientX;
+        previousY = clientY;
+      }
+
+      window.addEventListener("mousedown", startDrag);
+      window.addEventListener("mouseup", stopDrag);
+      window.addEventListener("mousemove", rotateModel);
+
+      window.addEventListener("touchstart", startDrag);
+      window.addEventListener("touchend", stopDrag);
+      window.addEventListener("touchmove", rotateModel);
+    </script>
   </body>
 </html>
